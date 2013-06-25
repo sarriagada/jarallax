@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="estilo.css"/>
+    <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript" src="jarallax-0.2.2.js"></script>
+    <script type="text/javascript">
+      var jarallax
+      init = function() {
+        jarallax = new Jarallax(new ControllerScroll(true));
+        var currentProgress = 0;
+        var progressSteps = 1 / 5;
+        
+        jarallax.setDefault('.container',{opacity:0, display:'none'})
+        
+        jarallax.addAnimation('.logo',[{progress:'0', opacity:'1'},
+                                       {progress:'10', opacity:'0'},
+                                       {progress:'100%', opacity:'0'}]);
+                                       
+        var animation = jarallax.addAnimation('#seccion1',[{progress:'0', display:'block', opacity:'0', top:'100%'},
+                                                         {progress:'10', display:'block', opacity:'1', top:'5%'},
+                                                         {progress:'20', display:'block', opacity:'0', top:'0%'}]);
+                                                         
+        jarallax.cloneAnimation('#seccion2',{progress:'+10'}, animation);
+        jarallax.cloneAnimation('#seccion3',{progress:'+20'}, animation);
+        jarallax.cloneAnimation('#seccion4',{progress:'+30'}, animation);
+      }
+    </script>
+  </head>
+  <body onLoad='init()'>
+    <nav>
+      <ul>
+        <li><a href="#" onClick="jarallax.jumpToProgress( 0, 2050, 30);">Inicio</a></li>
+        <li><a href="#" onClick="jarallax.jumpToProgress( 10, 2000, 30);">Historia</a></li>
+        <li><a href="#" onClick="jarallax.jumpToProgress( 20, 2000, 30);">Integrantes</a></li>
+        <li><a href="#" onClick="jarallax.jumpToProgress( 30, 2000, 30);">Discografia</a></li>
+        <li><a href="#" onClick="jarallax.jumpToProgress( 40, 2000, 30);">Novedades</a></li>
+      </ul>
+    </nav>
+    <h1 class="logo">Megadeth</h1>
+    <div class="contenedor" id="seccion1">
+      <h2>Historia</h2>
+    </div>
+    <div class="contenedor" id="seccion2">
+      <h2>Integrantes</h2>
+    </div>
+    <div class="contenedor" id="seccion3">
+      <h2>Discografia</h2>
+    </div>
+    <div class="contenedor" id="seccion4">
+      <h2>Novedades</h2>
+    </div>
+  </body>
+</html>
